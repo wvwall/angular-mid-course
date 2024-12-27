@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal, Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CarModel, Color } from './models.type';
+import { CarModel, Color, Config } from './models.type';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,11 @@ export class ConfiguratorService {
     { initialValue: [] }
   );
 
+  readonly getConfigById = (id: string): Signal<Config | undefined> =>
+    toSignal(this.http.get<Config>(`/options/${id}`), {
+      initialValue: undefined,
+    });
+
   readonly selectableColors = computed(() => this.currentCar()?.colors);
   readonly currentColor = signal<Color | undefined>(undefined);
   readonly currentCar = signal<CarModel | undefined>(undefined);
@@ -23,7 +28,6 @@ export class ConfiguratorService {
       return `https://interstate21.com/tesla-app/images/${car.code}/${color.code}.jpg`;
     else return null;
   });
-
   readonly step2IsReady: Signal<boolean> = computed(
     () => this.currentCar() != undefined && this.currentColor() != undefined
   );
