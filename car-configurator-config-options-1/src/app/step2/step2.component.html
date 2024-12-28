@@ -2,6 +2,9 @@
 Config:
 <select>
   <option [value]="0">Choose...</option>
+  @for(config of service.selectableOptions()?.configs; track config.id) {
+  <option [value]="config.id">{{ config.description }}</option>
+  }
 </select>
 <div>Range: 100 miles - Max speed: 200 mph - Cost: $50,000</div>
 
