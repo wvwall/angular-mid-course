@@ -12,4 +12,11 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class Step2Component {
   service = inject(ConfiguratorService);
+
+  ngOnInit() {
+    console.log(
+      '🚀 ~ ngOnInit ~  this.service.selectableOptions():',
+      this.service.selectableOptions()
+    );
+  }
 }

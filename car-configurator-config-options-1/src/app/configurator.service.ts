@@ -35,6 +35,7 @@ export class ConfiguratorService {
   readonly step2IsReady: Signal<boolean> = computed(
     () => this.currentCar() != undefined && this.currentColor() != undefined
   );
+  readonly currentConfig = signal<Config | undefined>(undefined);
 
   constructor() {
     effect(() => {
@@ -55,5 +56,13 @@ export class ConfiguratorService {
   selectColor(code: Color['code']) {
     const color = this.selectableColors()?.find((color) => color.code === code);
     this.currentColor.set(color);
+  }
+
+  selectConfig(id: string) {
+    const option = this.selectableOptions()?.configs.find(
+      (option) => option.id === +id
+    );
+    console.log('🚀 ~ ConfiguratorService ~ selectConfig ~ option:', option);
+    this.currentConfig.set(option);
   }
 }
