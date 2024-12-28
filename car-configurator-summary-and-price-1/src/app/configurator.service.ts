@@ -41,6 +41,7 @@ export class ConfiguratorService {
   readonly step3Ready: Signal<boolean> = computed(
     () => this.currentConfig() != undefined
   );
+
   constructor() {
     effect(() => {
       if (this.currentCar()?.code)
