@@ -6,18 +6,16 @@ Config:
   <option [value]="config.id">{{ config.description }}</option>
   }
 </select>
-@if (service.currentConfig()) {
+@if (service.currentConfig(); as config) {
 <div>
-  Range: {{ service.currentConfig()?.range }} miles - Max speed:
-  {{ service.currentConfig()?.speed }} mph - Cost: ${{
-    service.currentConfig()?.price
-  }}
+  Range: {{ config?.range }} miles - Max speed: {{ config?.speed }} mph - Cost:
+  ${{ config?.price }}
 </div>
-}
-
+} @if(service.selectableOptions()?.towHitch) {
 <div>
   Tow hitch?
   <input type="checkbox" />
-  <br />
-  Yoke steering wheel? <input type="checkbox" />
 </div>
+} @if(service.selectableOptions()?.yoke) { Yoke steering wheel?
+<input type="checkbox" />
+}

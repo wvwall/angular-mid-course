@@ -62,7 +62,6 @@ export class ConfiguratorService {
     const option = this.selectableOptions()?.configs.find(
       (option) => option.id === +id
     );
-    console.log('🚀 ~ ConfiguratorService ~ selectConfig ~ option:', option);
     this.currentConfig.set(option);
   }
 }
