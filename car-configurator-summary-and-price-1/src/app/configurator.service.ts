@@ -43,16 +43,12 @@ export class ConfiguratorService {
   );
 
   readonly totalPrice = computed(() => {
-    const color = this.currentColor();
-    const config = this.currentConfig();
-    if (color && config)
-      return (
-        color.price +
-        config.price +
-        (this.currentWheelIsYoke() ? 1000 : 0) +
-        (this.currentTowHitchIsSelected() ? 1000 : 0)
-      );
-    else return 0;
+    return (
+      (this.currentConfig()?.price ?? 0) +
+      (this.currentColor()?.price || 0) +
+      (this.currentWheelIsYoke() ? 1000 : 0) +
+      (this.currentTowHitchIsSelected() ? 1000 : 0)
+    );
   });
 
   constructor() {
