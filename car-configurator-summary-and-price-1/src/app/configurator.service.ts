@@ -42,6 +42,19 @@ export class ConfiguratorService {
     () => this.currentConfig() != undefined
   );
 
+  readonly totalPrice = computed(() => {
+    const color = this.currentColor();
+    const config = this.currentConfig();
+    if (color && config)
+      return (
+        color.price +
+        config.price +
+        (this.currentWheelIsYoke() ? 1000 : 0) +
+        (this.currentTowHitchIsSelected() ? 1000 : 0)
+      );
+    else return 0;
+  });
+
   constructor() {
     effect(() => {
       if (this.currentCar()?.code)

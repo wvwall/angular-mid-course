@@ -38,8 +38,9 @@
     <div class="col-sm-6">
       <b>Tow Hitch Package</b>
     </div>
-    @if (service.currentTowHitchIsSelected()) {}
+    @if (service.currentTowHitchIsSelected()) {
     <div class="col-sm-6">$1,000.00</div>
+    }
   </div>
   <hr />
 
@@ -47,7 +48,9 @@
     <div class="col-sm-6">
       <b>TOTAL COST</b>
     </div>
-    <div class="col-sm-6"></div>
+    <div class="col-sm-6">
+      <b>{{ service.totalPrice() | currency : "USD" : true }}</b>
+    </div>
   </div>
   <hr />
 </div>
