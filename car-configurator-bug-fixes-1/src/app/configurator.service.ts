@@ -65,6 +65,7 @@ export class ConfiguratorService {
     this.currentCar.set(model);
     this.currentColor.set(model?.colors[0]);
     this.currentTowHitchIsSelected.set(false);
+    this.currentConfig.set(undefined);
   }
 
   selectColor(code: Color['code']) {
